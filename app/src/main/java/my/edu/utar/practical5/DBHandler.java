@@ -48,7 +48,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 PetDAO pet = new PetDAO();
                 pet.setId(cursor.getInt(0));
                 pet.setPetName(cursor.getString(1));     //name
-                pet.setPetName(cursor.getString(2));     //type_id
+                pet.setPetType(cursor.getString(2));     //type_id
                 petList.add(pet);
             } while (cursor.moveToNext());
         }
