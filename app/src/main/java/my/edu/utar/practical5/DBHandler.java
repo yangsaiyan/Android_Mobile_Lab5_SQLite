@@ -71,7 +71,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void deletePet(String name){
         SQLiteDatabase db = this.getReadableDatabase();
-        db.delete("pets", "name="+name, null);
+        db.delete("pets", "name = ?", new String[]{name});
         db.close();
     }
 }

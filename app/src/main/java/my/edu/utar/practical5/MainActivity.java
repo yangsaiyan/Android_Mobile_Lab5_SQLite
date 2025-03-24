@@ -13,8 +13,8 @@ import android.widget.TextView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    EditText etPetName, etPetType;
-    Button btnAddPet, btnShowPets;
+    EditText etPetName, etPetType, etPetNameDel;
+    Button btnAddPet, btnShowPets, btnDeletePet;
     TextView tvPets;
     DBHandler dbHandler;
 
@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
         etPetName = findViewById(R.id.etPetName);
         etPetType = findViewById(R.id.etPetType);
+        etPetNameDel = findViewById(R.id.etPetNameDel);
         btnAddPet = findViewById(R.id.btnAddPet);
         btnShowPets = findViewById(R.id.btnShowPets);
+        btnDeletePet = findViewById(R.id.btnDeletePet);
         tvPets = findViewById(R.id.tvPets);
 
         dbHandler = new DBHandler(this);
@@ -71,5 +73,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnDeletePet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String name = etPetNameDel.getText().toString();
+                    dbHandler.deletePet(name);
+                    etPetNameDel.setText("");
+
+                    List<PetDAO> petList = dbHandler.getAllPet();
+                    StringBuilder sb = new StringBuilder();
+
+                    for (PetDAO pet : petList) {
+                        sb.append("ID: ").append(pet.getId())
+                                .append(", Name: ").append(pet.getPetName())
+                                .append(", Type: ").append(pet.getPetType())
+                                .append("\n");
+                    }
+
+                    if (sb.length() > 0) {
+                        tvPets.setText(sb.toString());
+                    } else {
+                        tvPets.setText("No pets found.");
+                    }
+                }
+            });
     }
 }

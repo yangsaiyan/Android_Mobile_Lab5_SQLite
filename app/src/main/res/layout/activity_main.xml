@@ -17,6 +17,12 @@
         android:layout_height="wrap_content"
         android:hint="Enter Pet Type" />
 
+    <EditText
+        android:id="@+id/etPetNameDel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Pet Name to delete" />
+
     <Button
         android:id="@+id/btnAddPet"
         android:layout_width="match_parent"
@@ -28,6 +34,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Show All Pets" />
+
+    <Button
+        android:id="@+id/btnDeletePet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete pet" />
 
     <TextView
         android:id="@+id/tvPets"
